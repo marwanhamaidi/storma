@@ -22,7 +22,7 @@
             overflow: hidden;
             padding: 14px 16px;
             display: flex;
-            justify-content: space-between; /* تم تغييرها لجعل الأقسام متباعدة */
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -59,7 +59,7 @@
             align-items: center;
             gap: 8px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            white-space: nowrap; /* يمنع انقسام النص إلى سطر جديد */
+            white-space: nowrap;
         }
         .support-button:hover {
             background-color: #677bc4;
@@ -111,13 +111,13 @@
         .download-button:hover {
             background-color: #0056b3;
         }
-        .features {
+        .features, .team-info {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             margin-top: 20px;
         }
-        .feature-item {
+        .feature-item, .team-item {
             flex-basis: 30%;
             padding: 15px;
             background-color: #e9ecef;
@@ -125,7 +125,7 @@
             margin-bottom: 15px;
             text-align: center;
         }
-        .feature-item h3 {
+        .feature-item h3, .team-item h3 {
             color: #007bff;
         }
         .account-info {
@@ -218,6 +218,25 @@
                 <p data-lang-key="feature6Text">You can change settings and customize your gameplay experience.</p>
             </div>
         </div>
+        <hr>
+        <h2 style="color: #0f4c75;" data-lang-key="teamInfoTitle">Meet Our Dedicated Team</h2>
+        <div class="team-info">
+            <div class="team-item">
+                <h3 data-lang-key="creatorTitle">Website Creator</h3>
+                <p data-lang-key="creatorName">**marwan_hamaidi_**</p>
+            </div>
+            <div class="team-item">
+                <h3 data-lang-key="launcherTitle">StormaX Launcher</h3>
+                <p data-lang-key="launcherName">**OMAR**</p>
+            </div>
+            <div class="team-item">
+                <h3 data-lang-key="discordTitle">Discord Team</h3>
+                <p data-lang-key="discordNames">**marwan_hamaidi & OMAR**</p>
+            </div>
+        </div>
+        <p style="text-align: center; color: #555; margin-top: 15px;" data-lang-key="createdInOneDay">
+            All of this was created in one day with passion and dedication to provide the best experience for our community. We hope you enjoy it!
+        </p>
     </div>
 
     <script>
@@ -240,7 +259,15 @@
                 feature5Text: 'A secure launcher with no viruses or malware.',
                 feature6Title: 'Full Customization',
                 feature6Text: 'You can change settings and customize your gameplay experience.',
-                accountInfo: 'Account Info'
+                accountInfo: 'Account Info',
+                teamInfoTitle: 'Meet Our Dedicated Team',
+                creatorTitle: 'Website Creator',
+                creatorName: 'marwan_hamaidi_',
+                launcherTitle: 'StormaX Launcher',
+                launcherName: 'OMAR',
+                discordTitle: 'Discord Team',
+                discordNames: 'marwan_hamaidi & OMAR',
+                createdInOneDay: 'All of this was created in one day with passion and dedication to provide the best experience for our community. We hope you enjoy it!'
             },
             fr: {
                 mainTitle: 'StormaX Launcher',
@@ -260,7 +287,15 @@
                 feature5Text: 'Un lanceur sécurisé sans virus ni logiciels malveillants.',
                 feature6Title: 'Personnalisation Complète',
                 feature6Text: 'Vous pouvez modifier les paramètres et personnaliser votre expérience de jeu.',
-                accountInfo: 'Infos du Compte'
+                accountInfo: 'Infos du Compte',
+                teamInfoTitle: 'Rencontrez Notre Équipe Dévouée',
+                creatorTitle: 'Créateur du site Web',
+                creatorName: 'marwan_hamaidi_',
+                launcherTitle: 'Lanceur StormaX',
+                launcherName: 'OMAR',
+                discordTitle: 'Équipe Discord',
+                discordNames: 'marwan_hamaidi & OMAR',
+                createdInOneDay: 'Tout cela a été créé en une journée avec passion et dévouement pour offrir la meilleure expérience à notre communauté. Nous espérons que vous l\'apprécierez !'
             },
             ar: {
                 mainTitle: 'StormaX Launcher',
@@ -280,7 +315,15 @@
                 feature5Text: 'لانشر آمن لا يحتوي على أي فيروسات أو برامج ضارة.',
                 feature6Title: 'تخصيص كامل',
                 feature6Text: 'يمكنك تغيير الإعدادات وتخصيص تجربة اللعب.',
-                accountInfo: 'معلومات الحساب'
+                accountInfo: 'معلومات الحساب',
+                teamInfoTitle: 'تعرف على فريقنا المتفاني',
+                creatorTitle: 'مطور الموقع',
+                creatorName: 'marwan_hamaidi_',
+                launcherTitle: 'لانشر StormaX',
+                launcherName: 'OMAR',
+                discordTitle: 'فريق الديسكورد',
+                discordNames: 'marwan_hamaidi & OMAR',
+                createdInOneDay: 'كل هذا تم إنشاؤه في يوم واحد بشغف وتفانٍ لتوفير أفضل تجربة لمجتمعنا. نتمنى أن تستمتعوا به!'
             }
         };
 
