@@ -18,15 +18,15 @@
             text-align: left;
         }
         .navbar {
-            background-color: #3498db; /* تم تغيير اللون إلى الأزرق الهادئ */
+            background-color: #3498db;
             overflow: hidden;
             padding: 14px 16px;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* تم تغييرها لجعل الأقسام متباعدة */
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .navbar-links, .navbar-center {
+        .navbar-section {
             display: flex;
             align-items: center;
             list-style: none;
@@ -34,16 +34,40 @@
             padding: 0;
             gap: 25px;
         }
-        .navbar-links a, .navbar-center a {
-            color: white; /* تم تغيير لون الخط إلى الأبيض */
+        .navbar-section a {
+            color: white;
             text-decoration: none;
             font-size: 1.1em;
             font-weight: bold;
             transition: border-bottom 0.3s ease;
             padding-bottom: 5px;
         }
-        .navbar-links a:hover, .navbar-center a:hover {
-            border-bottom: 2px solid white; /* سطر أبيض عند التحويم */
+        .navbar-section a:hover {
+            border-bottom: 2px solid white;
+        }
+        .support-button {
+            background-color: #7289da;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            white-space: nowrap; /* يمنع انقسام النص إلى سطر جديد */
+        }
+        .support-button:hover {
+            background-color: #677bc4;
+            transform: translateY(-2px);
+        }
+        .support-button img {
+            width: 24px;
+            height: 24px;
         }
         .container {
             width: 80%;
@@ -120,10 +144,10 @@
         }
         .language-switcher button {
             background-color: transparent;
-            color: white; /* لون الخط أبيض */
+            color: white;
             padding: 10px 20px;
             font-size: 18px;
-            border: 2px solid white; /* لون الحد أبيض */
+            border: 2px solid white;
             cursor: pointer;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -138,14 +162,22 @@
 <body>
 
     <div class="navbar">
-        <div class="left-section">
+        <div class="navbar-section">
             <div class="language-switcher">
                 <button onclick="setLanguage('en')">English</button>
                 <button onclick="setLanguage('fr')">Français</button>
                 <button onclick="setLanguage('ar')">العربية</button>
             </div>
         </div>
-        <div class="right-section">
+        
+        <div class="navbar-section">
+            <a href="https://discord.gg/5HJPDjWYw6" class="support-button">
+                <img src="discord.png" alt="Discord Logo">
+                SUPPORT
+            </a>
+        </div>
+
+        <div class="navbar-section">
             <span id="account-name" class="account-info">✨</span>
         </div>
     </div>
