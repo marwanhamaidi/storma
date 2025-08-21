@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الحساب</title>
+    <style>
+        /* CSS لتنسيق الصفحة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2c2f33; /* لون خلفية داكن */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .account-container {
+            background-color: #36393f; /* لون خلفية النموذج */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .account-container h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #7289da; /* لون أزرق جذاب */
+        }
+
+        .file-upload-section {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .file-upload-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            color: #b9bbbe;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 2px solid #4f545c;
+            border-radius: 5px;
+            padding: 8px;
+            background-color: #40444b;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper span {
+            flex-grow: 1;
+            padding: 0 10px;
+            color: #ddd;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-input-wrapper .browse-button {
+            background-color: #7289da;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .save-button {
+            background-color: #43b581; /* لون أخضر للحفظ */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .save-button:hover {
+            background-color: #38a774;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #fff;
+        }
+
+        .status-message.success {
+            color: #43b581;
+        }
+
+        .status-message.error {
+            color: #f04747;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="account-container">
+        <h2>إعدادات الحساب</h2>
+        <form id="uploadForm">
+            <div class="file-upload-section">
+                <label for="skin-file">اختر ملف السكن (صيغة PNG)</label>
+                <div class="file-input-wrapper">
+                    <span id="skin-file-name">لم يتم اختيار ملف...</span>
+                    <div class="browse-button">تصفح</div>
+                    <input type="file" id="skin-file" name="skin" accept=".png">
+                </div>
+            </div>
+
+            <div class="file-upload-section">
+                <label for="cape-file">اختر ملف الوشاح (صيغة PNG)</label>
+                <div class="file-input-wrapper">
+                    <span id="cape-file-name">لم يتم اختيار ملف...</span>
+                    <div class="browse-button">تصفح</div>
+                    <input type="file" id="cape-file" name="cape" accept=".png">
+                </div>
+            </div>
+
+            <button type="submit" class="save-button">حفظ التغييرات</button>
+        </form>
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script>
+        // JavaScript للتعامل مع تحميل الملفات و إرسالها إلى الخادم
+        document.getElementById('skin-file').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'لم يتم اختيار ملف...';
+            document.getElementById('skin-file-name').textContent = fileName;
+        });
+
+        document.getElementById('cape-file').addEventListener('change', function(e) {
+            var fileName = e.target.files[0] ? e.target.files[0].name : 'لم يتم اختيار ملف...';
+            document.getElementById('cape-file-name').textContent = fileName;
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // منع الإرسال الافتراضي للصفحة
+
+            const skinFile = document.getElementById('skin-file').files[0];
+            const capeFile = document.getElementById('cape-file').files[0];
+            const statusDiv = document.getElementById('status-message');
+
+            // يمكنك الحصول على اسم اللاعب من أي مكان، مثل local storage أو بعد تسجيل الدخول
+            // هذا مثال بسيط، يجب تعديله ليتناسب مع نظام المصادقة الخاص بك
+            const username = 'example_user'; // قم بتعديل هذا المتغير
+
+            if (!skinFile && !capeFile) {
+                statusDiv.textContent = 'الرجاء اختيار ملف واحد على الأقل.';
+                statusDiv.className = 'status-message error';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('username', username);
+            if (skinFile) {
+                formData.append('skin', skinFile);
+            }
+            if (capeFile) {
+                formData.append('cape', capeFile);
+            }
+
+            // إرسال البيانات إلى الخادم
+            // تأكد من استبدال http://127.0.0.1:5000 بعنوان الخادم الخاص بك
+            fetch('http://127.0.0.1:5000/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "Files uploaded successfully!") {
+                    statusDiv.textContent = 'تم حفظ التغييرات بنجاح!';
+                    statusDiv.className = 'status-message success';
+                } else {
+                    statusDiv.textContent = 'حدث خطأ: ' + data.message;
+                    statusDiv.className = 'status-message error';
+                }
+            })
+            .catch(error => {
+                statusDiv.textContent = 'فشل الاتصال بالخادم. تأكد من أن الخادم يعمل.';
+                statusDiv.className = 'status-message error';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+</body>
+</html>
